@@ -2,7 +2,7 @@
 
 <h1>Tasks</h1>
 
-<%= search_form_for @a, url: tasks_path do |f| %>
+<%= search_form_for @q, url: tasks_path do |f| %>
 
   <%= f.label :title_or_description_cont, 'キーワード' %>
   <%= f.search_field :title_or_description_cont %>
@@ -18,14 +18,13 @@
   <%= f.radio_button :status_eq, '2' %>done
   <%= f.submit 'Search' %>
 <% end %>
-
 <table>
   <thead>
     <tr>
       <th>Title</th>
-      <th>Description</th>
+      <th>description</th>
       <th>Status</th>
-      <th>Deadline</th>
+      <th><%= sort_link(@q, :deadline, "Deadline", default_order: :desc) %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
