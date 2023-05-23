@@ -3,7 +3,8 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    @a = Task.ransack(params[:a])
+    @tasks = @a.result
   end
 
   # GET /tasks/1
@@ -50,7 +51,7 @@ class TasksController < ApplicationController
     def set_task
       @task = Task.find(params[:id])
     end
-
+    
     # Only allow a trusted parameter "white list" through.
     def task_params
       params.require(:task).permit(:title, :description, :status, :deadline)
